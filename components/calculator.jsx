@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 export default () => {
   const [number1, setNumber1] = useState('')
   const [number2, setNumber2] = useState('')
+  const [operator, setOperator] = useState('')
   const [result, setResult] = useState('')
 
   return (
@@ -16,7 +17,12 @@ export default () => {
           value={number1}
           onChange={event => setNumber1(event.target.value)}
         />
-
+        <select name="operator" value={operator}>
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
         <input
           type="text"
           name="number2"
