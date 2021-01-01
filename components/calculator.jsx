@@ -5,11 +5,34 @@ export default () => {
   const [number2, setNumber2] = useState('')
   const [operator, setOperator] = useState('')
   const [result, setResult] = useState('')
+  const [error, setError] = useState('')
 
+  const calculate = () => {
+    if (parseFloat(number1) && parseFloat(number2)) {
+      switch (operator) {
+        case '+':
+          setResult(parseFloat(number1) + parseFloat(number2))
+          break
+        case '-':
+          setResult(parseFloat(number1) - parseFloat(number2))
+          break
+        case '*':
+          setResult(parseFloat(number1) * parseFloat(number2))
+          break
+        case '/':
+          setResult(parseFloat(number1) / parseFloat(number2))
+          break
+        default:
+          setResult(parseFloat(number1) + parseFloat(number2))
+      }
+    } else {
+      setError('error stupid')
+    }
+  }
   return (
     <div className="calculator">
       <div className="title">Simple Calculator</div>
-      <div className="title">Enter two numbers to calculate</div>
+      <div className="subtitle">Enter two number to calculate</div>
       <div className="form">
         <input
           type="text"
@@ -17,7 +40,7 @@ export default () => {
           value={number1}
           onChange={event => setNumber1(event.target.value)}
         />
-        <select name="operator" value={operator}>
+        <select name="operator" value={operator} onChange={event => setOperator(event.target.value)}>
           <option value="+">+</option>
           <option value="-">-</option>
           <option value="*">*</option>
@@ -29,8 +52,9 @@ export default () => {
           value={number2}
           onChange={event => setNumber2(event.target.value)}
         />
-        <button type="button">=</button>
+        <button type="button" onClick={calculate}>=</button>
         <input value={result} readOnly />
+        <div className="error">{error}</div>
       </div>
 
     </div>
