@@ -9,6 +9,7 @@ export default () => {
 
   const calculate = () => {
     if (parseFloat(number1) && parseFloat(number2)) {
+      if (error) setError('')
       switch (operator) {
         case '+':
           setResult(parseFloat(number1) + parseFloat(number2))
@@ -26,7 +27,8 @@ export default () => {
           setResult(parseFloat(number1) + parseFloat(number2))
       }
     } else {
-      setError('error stupid')
+      setError('Don\'t be silly, enter real number')
+      setResult('')
     }
   }
   return (
@@ -37,6 +39,7 @@ export default () => {
         <input
           type="text"
           name="number1"
+          className="number1"
           value={number1}
           onChange={event => setNumber1(event.target.value)}
         />
@@ -49,11 +52,12 @@ export default () => {
         <input
           type="text"
           name="number2"
+          className="number2"
           value={number2}
           onChange={event => setNumber2(event.target.value)}
         />
         <button type="button" onClick={calculate}>=</button>
-        <input value={result} readOnly />
+        <input className="result" type="text" value={result} readOnly />
         <div className="error">{error}</div>
       </div>
 
