@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react'
 
 export default () => {
@@ -8,7 +9,7 @@ export default () => {
   const [error, setError] = useState('')
 
   const calculate = () => {
-    if (parseFloat(number1) && parseFloat(number2)) {
+    if (Number(number1) && Number(number2)) {
       if (error) setError('')
       switch (operator) {
         case '+':
@@ -27,14 +28,22 @@ export default () => {
           setResult(parseFloat(number1) + parseFloat(number2))
       }
     } else {
-      setError('Don\'t be silly, enter real number')
+      setError('Don\'t be silly, enter real numbers!!')
       setResult('')
     }
   }
   return (
     <div className="calculator">
       <div className="title">Simple Calculator</div>
-      <div className="subtitle">Enter two number to calculate</div>
+      <div className="subtitle">
+        Enter two numbers to
+        <div className="scroll">
+          <span>Add</span>
+          <span>Subtract </span>
+          <span>Multiply</span>
+          <span>Divide</span>
+        </div>
+      </div>
       <div className="form">
         <input
           type="text"
@@ -43,7 +52,7 @@ export default () => {
           value={number1}
           onChange={event => setNumber1(event.target.value)}
         />
-        <select name="operator" value={operator} onChange={event => setOperator(event.target.value)}>
+        <select className="operator" name="operator" value={operator} onChange={event => setOperator(event.target.value)}>
           <option value="+">+</option>
           <option value="-">-</option>
           <option value="*">*</option>
@@ -56,11 +65,10 @@ export default () => {
           value={number2}
           onChange={event => setNumber2(event.target.value)}
         />
-        <button type="button" onClick={calculate}>=</button>
+        <button className="equalButton" type="button" onClick={calculate}>=</button>
         <input className="result" type="text" value={result} readOnly />
         <div className="error">{error}</div>
       </div>
-
     </div>
   )
 }
