@@ -34,7 +34,7 @@ export default () => {
   }
   return (
     <div className="calculator">
-      <div className="title">Simple Calculator</div>
+      <div className="title">Simple React Calculator</div>
       <div className="subtitle">
         Enter two numbers to
         <div className="scroll">
